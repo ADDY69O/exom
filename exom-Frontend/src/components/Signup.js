@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -7,6 +8,8 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');   
+
+  const navigate = useNavigate();
 
   const handleSubmit =async()=>{
         
@@ -39,7 +42,7 @@ const Signup = () => {
 
       await axios.post("http://localhost:5000/api/v1/user/register",body).then(response => {
          window.alert(response.data.message);
-         window.location.href="/login";
+        navigate("/login")
         })
         .catch(error => {
 

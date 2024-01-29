@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";
 import { delUser } from '../Redux/Reducers/UserReducers';
+import { CgProfile } from "react-icons/cg";
+
 
 const Navbar = () => {
 
@@ -22,19 +24,22 @@ const Navbar = () => {
 
 
       <div className='flex flex-row gap-8 '>
-        
-        {isAuthenticated ?
-    <p  ><Link to="/" className='hover:text-gray-300 flex flex-row gap-1'><IoMdLogOut onClick={()=>handleLogout()}  size={28}/></Link></p>
-          :
-      <div className='flex flex-row gap-4'>
+      <p  ><Link to="/cart" className='hover:text-gray-300 flex flex-row gap-1'><IoCart  size={28}/> Cart </Link></p>
+        {!isAuthenticated ?
+        <div className='flex flex-row gap-4'>
 
-        <Link to="/login" className="hover:text-gray-300" >Login</Link>
+          <Link to="/login" className="hover:text-gray-300" >Login</Link>
         <Link to="/signup" className="hover:text-gray-300" >Signup</Link>
-      
-     
+         </div>
+          :
+          <div className='flex flex-row gap-4'>
+
+        <p  ><Link to="/about" className='hover:text-gray-300 flex flex-row gap-1'><CgProfile  size={28}/>  </Link></p>
+        <p  ><Link to="/" className='hover:text-gray-300 flex flex-row gap-1'><IoMdLogOut onClick={()=>handleLogout()}  size={28}/></Link></p>
       </div>
       }
-        <p  ><Link to="/cart" className='hover:text-gray-300 flex flex-row gap-1'><IoCart  size={28}/> Cart </Link></p>
+        
+      
       </div>
     </div>
   );

@@ -7,13 +7,10 @@ const initialState ={
 
 const addUserAction = (state,action)=>{
     console.log(action.payload)
-    const newUser={username:action.payload.username,email:action.payload.email,phone:action.payload.phone};
+    const newUser={username:action.payload.username,email:action.payload.email,phone:action.payload.phone,id:action.payload._id,token:action.payload.token };
 
     state.isAuthenticated=true;
     state.user=newUser;
-
-
-
 
 }
 

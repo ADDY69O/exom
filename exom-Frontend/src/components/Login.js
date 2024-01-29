@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Redux/Reducers/UserReducers';
 
@@ -7,6 +8,7 @@ import { addUser } from '../Redux/Reducers/UserReducers';
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const dispatch = useDispatch();
+        const naviagate = useNavigate();
 
         const handleSubmit =async()=>{
            if (!(password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password))) {
@@ -24,9 +26,10 @@ import { addUser } from '../Redux/Reducers/UserReducers';
             await axios.post("http://localhost:5000/api/v1/user/login",body).then(response => {
                 window.alert(response.data.message);
                 // console.log(response.data)
+                response.data.user.token=response.data.token;
                 dispatch(addUser(response.data.user))
                 localStorage.setItem("userInfo",response.data.token);
-                window.location.href="/";
+                naviagate("/")
               })
               .catch(error => {
 
