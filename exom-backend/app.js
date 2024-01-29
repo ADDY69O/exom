@@ -16,6 +16,11 @@ require("./db/conn.js")
 //api calls
 app.use('/api/v1/user',require('./routes/userRoutes'))
 
+app.get("/",(req,res)=>{
+    res.send(`<h2>Welcome to the Backend</h2>`);
+})
+
+
 const PORT = process.env.PORT || 5000;
 
 
